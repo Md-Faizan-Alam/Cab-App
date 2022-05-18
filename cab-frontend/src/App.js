@@ -1,5 +1,6 @@
 import './App.css';
 import LoginForm from './Components/LoginForm';
+import Modal from './Components/Modal';
 import Navbar from './Components/Navbar';
 import PhonePrompt from './Components/PhonePrompt';
 import RegistrationForm from './Components/RegistrationFrom';
@@ -9,11 +10,13 @@ function App() {
 
   return (
     <div>
+      <Modal/>
     <Navbar />
     <div  style={{height:'80vw',backgroundImage: `url("./TAXI.jpg")`,backgroundSize: 'cover'}}>
       {/* <PhonePrompt /> */}
       {/* <LoginForm /> */}
       {/* <RegistrationForm /> */}
+      {/* <UserInterface/> */}
       <UserInterface />
     </div>
     </div>

@@ -6,73 +6,85 @@ const Trips = (props)=>{
         <table className="table text-light table-borderless" style={{fontSize: '2vw'}}>
                 <thead>
                   <tr>
-                    <th style={{padding: '1vw'}} scope="col">#</th>
-                    <th style={{padding: '1vw'}} scope="col">From</th>
-                    <th style={{padding: '1vw'}} scope="col">To</th>
-                    <th style={{padding: '1vw'}} scope="col">Payment (Rs.)</th>
+                    <th scope="col">#</th>
+                    <th scope="col">From</th>
+                    <th scope="col">To</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Payment (Rs.)</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <th style={{padding: '1vw'}} scope="row">1</th>
-                    <td style={{padding: '1vw'}} >Exide</td>
-                    <td style={{padding: '1vw'}} >Narkelbagan</td>
-                    <td style={{padding: '1vw'}} >250</td>
+                    <th scope="row">1</th>
+                    <td >Exide</td>
+                    <td >Narkelbagan</td>
+                    <td >03/05/22</td>
+                    <td >250</td>
                   </tr>
                   <tr>
-                    <th style={{padding: '1vw'}} scope="row">1</th>
-                    <td style={{padding: '1vw'}} >Exide</td>
-                    <td style={{padding: '1vw'}} >Narkelbagan</td>
-                    <td style={{padding: '1vw'}} >250</td>
+                    <th scope="row">1</th>
+                    <td >Exide</td>
+                    <td >Narkelbagan</td>
+                    <td >03/05/22</td>
+                    <td >250</td>
                   </tr>
                   <tr>
-                    <th style={{padding: '1vw'}} scope="row">1</th>
-                    <td style={{padding: '1vw'}} >Exide</td>
-                    <td style={{padding: '1vw'}} >Narkelbagan</td>
-                    <td style={{padding: '1vw'}} >250</td>
+                    <th scope="row">1</th>
+                    <td >Exide</td>
+                    <td >Narkelbagan</td>
+                    <td >03/05/22</td>
+                    <td >250</td>
                   </tr>
                   <tr>
-                    <th style={{padding: '1vw'}} scope="row">1</th>
-                    <td style={{padding: '1vw'}} >Exide</td>
-                    <td style={{padding: '1vw'}} >Narkelbagan</td>
-                    <td style={{padding: '1vw'}} >250</td>
+                    <th scope="row">1</th>
+                    <td >Exide</td>
+                    <td >Narkelbagan</td>
+                    <td >03/05/22</td>
+                    <td >250</td>
                   </tr>
                   <tr>
-                    <th style={{padding: '1vw'}} scope="row">1</th>
-                    <td style={{padding: '1vw'}} >Exide</td>
-                    <td style={{padding: '1vw'}} >Narkelbagan</td>
-                    <td style={{padding: '1vw'}} >250</td>
+                    <th scope="row">1</th>
+                    <td >Exide</td>
+                    <td >Narkelbagan</td>
+                    <td >03/05/22</td>
+                    <td >250</td>
                   </tr>
                   <tr>
-                    <th style={{padding: '1vw'}} scope="row">1</th>
-                    <td style={{padding: '1vw'}} >Exide</td>
-                    <td style={{padding: '1vw'}} >Narkelbagan</td>
-                    <td style={{padding: '1vw'}} >250</td>
+                    <th scope="row">1</th>
+                    <td >Exide</td>
+                    <td >Narkelbagan</td>
+                    <td >03/05/22</td>
+                    <td >250</td>
                   </tr>
                   <tr>
-                    <th style={{padding: '1vw'}} scope="row">1</th>
-                    <td style={{padding: '1vw'}} >Exide</td>
-                    <td style={{padding: '1vw'}} >Narkelbagan</td>
-                    <td style={{padding: '1vw'}} >250</td>
+                    <th scope="row">1</th>
+                    <td >Exide</td>
+                    <td >Narkelbagan</td>
+                    <td >03/05/22</td>
+                    <td >250</td>
                   </tr>
                   <tr>
-                    <th style={{padding: '1vw'}} scope="row">1</th>
-                    <td style={{padding: '1vw'}} >Exide</td>
-                    <td style={{padding: '1vw'}} >Narkelbagan</td>
-                    <td style={{padding: '1vw'}} >250</td>
+                    <th scope="row">1</th>
+                    <td >Exide</td>
+                    <td >Narkelbagan</td>
+                    <td >03/05/22</td>
+                    <td >250</td>
                   </tr>
                   <tr>
-                    <th style={{padding: '1vw'}} scope="row">1</th>
-                    <td style={{padding: '1vw'}} >Exide</td>
-                    <td style={{padding: '1vw'}} >Narkelbagan</td>
-                    <td style={{padding: '1vw'}} >250</td>
+                    <th scope="row">1</th>
+                    <td >Exide</td>
+                    <td >Narkelbagan</td>
+                    <td >03/05/22</td>
+                    <td >250</td>
                   </tr>
                   <tr>
-                    <th style={{padding: '1vw'}} scope="row">1</th>
-                    <td style={{padding: '1vw'}} >Exide</td>
-                    <td style={{padding: '1vw'}} >Narkelbagan</td>
-                    <td style={{padding: '1vw'}} >250</td>
+                    <th scope="row">1</th>
+                    <td >Exide</td>
+                    <td >Narkelbagan</td>
+                    <td >03/05/22</td>
+                    <td >250</td>
                   </tr>
+
                 </tbody>
               </table>
         </>
