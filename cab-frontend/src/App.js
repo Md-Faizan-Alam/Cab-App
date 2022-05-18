@@ -4,6 +4,7 @@ import Modal from './Components/Modal';
 import Navbar from './Components/Navbar';
 import PhonePrompt from './Components/PhonePrompt';
 import RegistrationForm from './Components/RegistrationFrom';
+import Test from './Components/Test';
 import UserInterface from './Components/UserInterface';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <div>
       <Modal/>
     <Navbar />
+    {/* <Test/> */}
     <div  style={{height:'80vw',backgroundImage: `url("./TAXI.jpg")`,backgroundSize: 'cover'}}>
       {/* <PhonePrompt /> */}
       {/* <LoginForm /> */}

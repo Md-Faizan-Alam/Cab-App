@@ -5,6 +5,7 @@ import Profile from './Profile';
 import SideBar from './SideBar';
 import Trips from './Trips';
 import {BrowserRouter,Route,Routes} from 'react-router-dom';
+import CabBooking from './CabBooking';
 
 const UserInterface =(props)=>{
     return(
@@ -24,13 +25,15 @@ const UserInterface =(props)=>{
               <Routes>
                 <Route path='/profile' element={<Profile/>} />
                 <Route path='/trips' element={<Trips/>} />
-                <Route path='/feedback' element={<Feedback/>} />
+                {/* <Route path='/feedback' element={<Feedback/>} /> */}
+                <Route path='/booking' element={<CabBooking/>} />
                 <Route path='/delete' element={<DeleteAccount/>} />
               </Routes>
                 {/* <Profile /> */}
                 {/* <Trips /> */}
                 {/* <Feedback /> */}
                 {/* <DeleteAccount /> */}
+                {/* <CabBooking/> */}
               
             </div>
           </div>
