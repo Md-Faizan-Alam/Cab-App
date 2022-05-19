@@ -1,11 +1,11 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import LoginForm from './Components/LoginForm';
 import Modal from './Components/Modal';
 import Navbar from './Components/Navbar';
 import PhonePrompt from './Components/PhonePrompt';
-import RegistrationForm from './Components/RegistrationFrom';
 import Test from './Components/Test';
 import UserInterface from './Components/UserInterface';
+import VariableForm from './Components/VariableForm';
 
 function App() {
 
@@ -13,13 +13,14 @@ function App() {
     <div>
       <Modal/>
     <Navbar />
-    {/* <Test/> */}
     <div  style={{height:'80vw',backgroundImage: `url("./TAXI.jpg")`,backgroundSize: 'cover'}}>
-      {/* <PhonePrompt /> */}
-      {/* <LoginForm /> */}
-      {/* <RegistrationForm /> */}
-      {/* <UserInterface/> */}
-      <UserInterface />
+      <Routes>
+        <Route path='/login' element={<VariableForm type='login'/>} />
+        <Route path='/phone/register' element={<VariableForm type='registration'/>} />
+        <Route path='/phone' element={<VariableForm type='phone'/>} />
+        <Route path='/login/interface' element={<UserInterface/>} />
+      </Routes>
+      {/* <UserInterface /> */}
     </div>
     </div>
   );

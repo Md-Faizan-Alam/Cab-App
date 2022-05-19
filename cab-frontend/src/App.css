@@ -1,3 +1,7 @@
+:root{
+  --imgSide: 2em;
+}
+
 .App {
   text-align: center;
 }
@@ -42,4 +46,10 @@ td{
 th{
   padding: 1vw !important;
 }
+#logo{
+  width: var(--imgSide);
+  height: var(--imgSide);
+  margin-bottom: 2vw;
+}
+
 

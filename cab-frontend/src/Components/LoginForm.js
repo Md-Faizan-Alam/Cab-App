@@ -1,6 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = (props)=>{
+  const navigate = useNavigate();
+    function handleLogin(){
+      navigate('interface');
+    }
+
     return(
         <>
         <div className="conatiner bg-dark w-50 m-auto text-center text-light position-relative" style={{top: '10vw', fontSize: '3vw', opacity:'0.9',borderRadius: '3vw', paddingTop: '2vw',height: '35vw'}}>
@@ -17,7 +23,7 @@ const LoginForm = (props)=>{
                 <td ><input type="password" className="form-control w-75" style={{height: '4vw',fontSize: '2vw',padding: '1vw'}} id="inputPassword2" placeholder="Enter your password"/></td>
               </tr>
               <tr>
-                <td colSpan="2"><button type="button" className="btn btn-warning" style={{fontSize: '2vw',padding: '0vw 1vw'}}>Login</button></td>
+                <td colSpan="2"><button type="button" className="btn btn-warning" onClick={handleLogin} style={{fontSize: '2vw',padding: '0vw 1vw'}}>Login</button></td>
               </tr>
             </tbody>
           </table>
