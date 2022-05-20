@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const SideBar = (props)=>{
   const [check, setCheck] = useState({profile:true, trips:false, booking:false, delete:false});
   const navigate = useNavigate();
-
-  useEffect(()=>{
-    // document.getElementById('btnradio1').click();
-  },[]);
 
   const sideBarToggle = (e) => {
     console.log(e.target.value+' toggled');
@@ -20,7 +16,7 @@ const SideBar = (props)=>{
         [e.target.value]: true
       };
     });
-    navigate(e.target.value+'*');
+    navigate(e.target.value);
   };
 
     return(
