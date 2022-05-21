@@ -8,7 +8,7 @@ const SignSet =(props)=>{
         navigate('login');
     }
     function phoneBlock(e){
-        if(e.target.id=='customerRegister'){
+        if(e.target.id==='customerRegister'){
             navigate('phoneCustomer')
         }
         else{

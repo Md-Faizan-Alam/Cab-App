@@ -48,7 +48,7 @@ const CabBooking = (props) => {
                         <td></td>
                     </tr>
                     <tr>
-                        <td colSpan="4"><button type="button" className="btn btn-warning" style={{fontSize: '3vw',padding: '0vw 1vw'}}>Next</button></td>
+                        <td colSpan="4"><button type="button" className="btn btn-warning" style={{fontSize: '3vw',padding: '0.5vw 2vw', fontWeight:'10vw'}}>Next</button></td>
                     </tr>
                 </tbody>
             </table>

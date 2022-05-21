@@ -27,10 +27,10 @@ const DeleteAccount = (props) => {
                             <td colSpan={2}>
                                 <button
                                     type="button"
-                                    className="btn btn-warning fw-bold"
+                                    className="btn btn-warning fw-bold position-relative"
                                     data-bs-toggle="modal"
                                     data-bs-target="#exampleModal"
-                                    style={{ fontSize: '2vw', padding: '0vw 1vw' }}
+                                    style={{ fontSize: '2vw', padding: '1vw 2vw', top:'2vw' }}
                                 >
                                     Confirm Deletion
                                 </button>

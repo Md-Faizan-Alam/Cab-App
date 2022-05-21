@@ -3,17 +3,32 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const LoginForm = (props) => {
   const [passType , setPassType] = useState(false);
+  const [userName , setUserName] = useState('');
+  const [password , setPassword] = useState('');
+  const [popUp , setPopUp] = useState('');
 
   const navigate = useNavigate();
   function handleLogin() {
-    navigate('interface');
+    if(userName==="PP" && password==="AA"){
+      navigate('interface');
+    }
+    else{
+      setPopUp('Incorrect Username or Password')
+      setUserName('');
+      setPassword('');
+    }
   }
   function handleShow() {
     console.log("Entering handleShow");
     setPassType(!passType);
   
   }
-
+  function handleUserName(e){
+    setUserName(e.target.value);
+  }
+  function handlePassword(e){
+    setPassword(e.target.value);
+  }
 
   return (
     <>
@@ -23,22 +38,25 @@ const LoginForm = (props) => {
         <form>
           <table className="table text-light table-borderless" style={{ marginTop: '2vw' }}>
             <tbody>
+            <tr>
+                <td colSpan={2} style={{fontSize: '1.5vw', lineHeight:'0.2vw', position: 'relative', right: '5vw'}} className="text-danger fw-bold" >{popUp}</td>
+              </tr>
               <tr>
                 <td className="text-end" >Name: </td>
-                <td ><input type="text" className="form-control w-75" style={{ height: '4vw', fontSize: '2vw', padding: '1vw' }} id="inputPassword2" placeholder="Enter your full name" /></td>
+                <td ><input type="text" className="form-control w-75" style={{ height: '4vw', fontSize: '2vw', padding: '1vw' }} onChange={handleUserName} value={userName} id="inputPassword2" placeholder="Enter your full name" /></td>
               </tr>
               <tr>
                 <td className="text-end" >Password: </td>
-                <td ><input type={passType ? "text" : "password"} className="form-control w-75" style={{ height: '4vw', fontSize: '2vw', padding: '1vw' }} id="inputPassword2" placeholder="Enter your password" /></td>
+                <td ><input type={passType ? "text" : "password"} className="form-control w-75" style={{ height: '4vw', fontSize: '2vw', padding: '1vw' }} onChange={handlePassword} value={password} id="inputPassword2" placeholder="Enter your password" /></td>
               </tr>
               {/* <tr>
                 <td colSpan={2} style={{fontSize: '1.5vw'}} >Show Password<input onChange={handleShow} checked={passType} type="checkbox" className="form-check-input" style={{ padding: '0.5vw', marginLeft:'1vw' }} id="inputPassword2"  /></td>
               </tr> */}
               <tr>
-                <td colSpan={2} style={{fontSize: '1.5vw', lineHeight:'0.2vw'}} ><Link to="/phoneCustomer" class="link-warning">New here? Create an account as a customer</Link></td>
+                <td colSpan={2} style={{fontSize: '1.5vw', lineHeight:'0.2vw'}} ><Link to="/phoneCustomer" className="link-warning">New here? Create an account as a customer</Link></td>
               </tr>
               <tr>
-                <td colSpan={2} style={{fontSize: '1.5vw' , lineHeight:'0.2vw'}} ><Link to="/phoneDriver" class="link-warning">or as a driver</Link></td>
+                <td colSpan={2} style={{fontSize: '1.5vw' , lineHeight:'0.2vw'}} ><Link to="/phoneDriver" className="link-warning">or as a driver</Link></td>
               </tr>
 
               <tr>
