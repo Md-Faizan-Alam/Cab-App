@@ -6,6 +6,7 @@ const userRepository = require('./userRepository');
 const cabRepository = require('./cabRepository');
 const tripRepository = require('./tripRepository');
 const locationRepository = require('./locationRepository');
+const userList = require('./DummyData');
 
 // ===================================== Configurations ==============================================
 app.use(bodyParser.json());
@@ -57,7 +58,7 @@ app.get("/driver", async (req, res) => {
 // ======================================== Post Mappings ============================================
 
 app.post("/setUserList", async (req, res) => {
-    await repository.saveAll(req.body)
+    await userRepository.saveAll(userList)
         .then((value) => (res.send(value)))
         .catch((error) => {
             handleError(res,error);
@@ -67,7 +68,7 @@ app.post("/setUserList", async (req, res) => {
 // ======================================== Put Mappings ============================================
 
 app.put("/updateData", async (req, res) => {
-    await repository.update(req.body)
+    await userRepository.update(req.body)
         .then((value) => res.send('Updated Successfully'))
         .catch((error) => {
             handleError(res,error);
@@ -81,3 +82,5 @@ app.listen(3333, () => {
 });
 
 // ========================================= Basic Testing ===========================================
+
+// console.log(userList);

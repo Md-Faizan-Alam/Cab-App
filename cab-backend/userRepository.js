@@ -1,7 +1,7 @@
 const Repository = require('../../../CRUD/Repository.js');
 
 const userRepository = new Repository('cab_user', {
-    user_id: 'String',
+    user_id: 'Integer',
     type: 'String',
     first_name: 'String',
     last_name: 'String',

@@ -18,7 +18,12 @@ const SideBar = (props)=>{
         [e.target.value]: true
       };
     });
-    navigate(e.target.value);
+    if(e.target.value==="profile"){
+      navigate('');
+    }
+    else{
+      navigate(e.target.value);
+    }
   };
 
     return(

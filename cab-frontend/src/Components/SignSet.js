@@ -1,10 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setType } from '../Actions/TypeAction';
 
 const SignSet =(props)=>{
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    function loginBlock(){
+    function loginBlock(type2){
+        // dispatch(setType(e.target.value));
+        console.log('loginBlock has been called')
+        console.log(type2)
+        dispatch(setType(type2));
         navigate('login');
     }
     function phoneBlock(e){
@@ -35,9 +42,9 @@ const SignSet =(props)=>{
                                 className="dropdown-menu bg-warning"
                                 aria-labelledby="navbarDropdown"
                             >
-                                <li><a className="dropdown-item" onClick={loginBlock}>as Admin</a></li>
-                                <li><a className="dropdown-item" onClick={loginBlock}>as Customer</a></li>
-                                <li><a className="dropdown-item" onClick={loginBlock}>as Driver</a></li>
+                                <li><a className="dropdown-item" onClick={()=>{loginBlock('admin')}} >as Admin</a></li>
+                                <li><a className="dropdown-item" onClick={()=>{loginBlock('customer')}} >as Customer</a></li>
+                                <li><a className="dropdown-item" onClick={()=>{loginBlock('driver')}} >as Driver</a></li>
                             </ul>
                         </li>
 

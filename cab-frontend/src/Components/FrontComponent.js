@@ -20,7 +20,7 @@ const FrontComponent = (props) => {
                     <Route path='/phoneDriver' element={<VariableForm type='phone' heading='Drive to fulfil your dreams' userType="driver"  />} />
                     <Route path='/phoneCustomer' element={<VariableForm type='phone' heading='A car for every occasion' userType="customer"  />} />
                     <Route path='/login/interface' element={<UserInterface />} >
-                        <Route path='/login/interface/profile' index element={<Profile />} />
+                        <Route index element={<Profile />} />
                         <Route path='/login/interface/trips' element={<Trips />} />
                         <Route path='/login/interface/feedback' element={<Feedback/>} />
                         <Route path='/login/interface/giveFeedback' element={<GiveFeedback/>} />
