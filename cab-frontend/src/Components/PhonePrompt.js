@@ -5,12 +5,17 @@ const PhonePrompt = (props)=>{
   const navigate = useNavigate();
 
   function registerBlock(){
+    if(props.userType=="customer"){
+      navigate('register')
+    }
+    else{
     navigate('register');
+    }
   }
     return(
         <>
         <div className="conatiner bg-dark w-50 m-auto text-center text-light position-relative" style={{top: '10vw', fontSize: '3vw', opacity: '0.9',borderRadius: '3vw', paddingTop: '2vw',height: '30vw'}}>
-        <div className="fw-bold text-decoration-underline text-warning">Drive to fulfill your dreams</div>
+        <div className="fw-bold text-decoration-underline text-warning">{props.heading}</div>
         <form>
           <table className="table text-light table-borderless" style={{marginTop: '4vw'}}>
             <tbody>

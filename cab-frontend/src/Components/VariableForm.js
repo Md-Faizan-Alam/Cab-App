@@ -12,7 +12,7 @@ const VariableForm = (props)=>{
     const Form = form[props.type];
     return(
         <>
-        <Form />
+        <Form heading= {props.heading} userType={props.userType}/>
         </>
     );
 }

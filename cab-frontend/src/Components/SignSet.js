@@ -7,8 +7,13 @@ const SignSet =(props)=>{
     function loginBlock(){
         navigate('login');
     }
-    function phoneBlock(){
-        navigate('phone');
+    function phoneBlock(e){
+        if(e.target.id=='customerRegister'){
+            navigate('phoneCustomer')
+        }
+        else{
+        navigate('phoneDriver');
+        }
     }
     return(
         <>
@@ -49,8 +54,8 @@ const SignSet =(props)=>{
                                 className="dropdown-menu bg-warning"
                                 aria-labelledby="navbarDropdown"
                             >
-                                <li><a className="dropdown-item" onClick={phoneBlock}>as Customer</a></li>
-                                <li><a className="dropdown-item" onClick={phoneBlock}>as Driver</a></li>
+                                <li><a className="dropdown-item" onClick={phoneBlock} id='customerRegister'>as Customer</a></li>
+                                <li><a className="dropdown-item" onClick={phoneBlock} id='driverRegister'>as Driver</a></li>
                             </ul>
                         </li>
 
