@@ -5,7 +5,7 @@ const RegistrationForm = (props)=>{
   const type = useSelector(state=>state.userType);
 
   function getTitle(){
-    if(type=='driver'){
+    if(type==='driver'){
       return 'Drive to fulfil your dreams';
     }
     return 'A car for every occasion';

@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 function handleError(res, error) {
     console.log(error);
     res.send(error.message + '\nTransaction Failed');
+    // res.send('Transaction Failed');
 }
 
 // ======================================= Get Mappings ============================================
@@ -67,6 +68,29 @@ app.get("/driver", async (req, res) => {
 });
 
 // ======================================== Post Mappings ============================================
+
+app.post("/validation", async (req,res)=>{
+    const action = req.body;
+    console.log(action);
+    let userList = null;
+    let user = null;
+    await userRepository.findByKey('type',action.type)
+    .then(value=>{
+        userList=value;
+        console.log(`userList is ${userList}`);
+    })
+    .catch(error=>handleError(res,error));
+
+    for(let i in userList){
+        console.log(userList[i]);
+        if((userList[i].first_name == action.userName) && (userList[i].password == action.password)){
+            user = userList[i];
+        }
+    }
+    console.log('The user is');
+    console.log(user);
+    res.send(user);
+});
 
 app.post("/setUserList", async (req, res) => {
     await userRepository.saveAll(userList)

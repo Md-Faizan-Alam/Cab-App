@@ -1,65 +1,62 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { setType } from '../Actions/TypeAction';
 import { validateUser } from '../Actions/UserAction';
 
 const LoginForm = (props) => {
-  const [passType , setPassType] = useState(false);
-  const [userName , setUserName] = useState('');
-  const [password , setPassword] = useState('');
-  const [popUp , setPopUp] = useState('');
+  const [passType, setPassType] = useState(false);
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [popUp, setPopUp] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const type = useSelector(state=>state.userType);
-  const user = useSelector(state=>state.user);
+  const type = useSelector(state => state.userType);
+  const user = useSelector(state=> state.user);
+  
 
-  function linkDisplay(){
-    if(type==='admin'){
+  function linkDisplay() {
+    if (type === 'admin') {
       return 'none';
     }
     return '';
   }
 
-  function handleLogin() {
-    dispatch(validateUser(userName,password,type));
-    if(user===null){
-      setPopUp('Incorrect Username or Password')
-      setUserName('');
-      setPassword('');
-    }
-    else{
-      navigate('interface');
-    }
-
-    // if(userName==="PP" && password==="AA"){
-    //   navigate('interface');
-    // }
-    // else{
-    //   setPopUp('Incorrect Username or Password')
-    //   setUserName('');
-    //   setPassword('');
-    // }
+  // Reset popUp after refresh
+  const handleLogin = async () => {
+    dispatch(validateUser(userName, password, type));
+    console.log(user);
+      if (user === '' || user === null) {
+        console.log('Running login function with user ' + user);
+        setPopUp('Incorrect Username or Password')
+        setUserName('');
+        setPassword('');
+      }
+      else {
+        console.log('Taking the user to interface');
+        navigate('interface');
+      }
   }
+
   function handleShow() {
     console.log("Entering handleShow");
     setPassType(!passType);
-  
+
   }
-  function handleUserName(e){
+  function handleUserName(e) {
     setUserName(e.target.value);
   }
-  function handlePassword(e){
+  function handlePassword(e) {
     setPassword(e.target.value);
   }
 
-  function goToPhone(passedType){
+  function goToPhone(passedType) {
     dispatch(setType(passedType));
     navigate('phone');
   }
 
-  
+
 
   return (
     <>
@@ -69,8 +66,8 @@ const LoginForm = (props) => {
         <form>
           <table className="table text-light table-borderless" style={{ marginTop: '2vw' }}>
             <tbody>
-            <tr>
-                <td colSpan={2} style={{fontSize: '1.5vw', lineHeight:'0.2vw', position: 'relative', right: '5vw'}} className="text-danger fw-bold" >{popUp}</td>
+              <tr>
+                <td colSpan={2} style={{ fontSize: '1.5vw', lineHeight: '0.2vw', position: 'relative', right: '5vw' }} className="text-danger fw-bold" >{popUp}</td>
               </tr>
               <tr>
                 <td className="text-end" >Name: </td>
@@ -81,13 +78,13 @@ const LoginForm = (props) => {
                 <td ><input type={passType ? "text" : "password"} className="form-control w-75" style={{ height: '4vw', fontSize: '2vw', padding: '1vw' }} onChange={handlePassword} value={password} id="password" placeholder="Enter your password" /></td>
               </tr>
               <tr>
-                <td colSpan={2} style={{fontSize: '1.5vw'}} >Show Password<input onChange={handleShow} checked={passType} type="checkbox" className="form-check-input" style={{ padding: '0.5vw', marginLeft:'1vw' }} id="passType"  /></td>
+                <td colSpan={2} style={{ fontSize: '1.5vw' }} >Show Password<input onChange={handleShow} checked={passType} type="checkbox" className="form-check-input" style={{ padding: '0.5vw', marginLeft: '1vw' }} id="passType" /></td>
               </tr>
               <tr>
-                <td colSpan={2} style={{fontSize: '1.5vw', lineHeight:'0.2vw',display: linkDisplay()}} id='link1' ><a onClick={()=>{goToPhone('customer')}} className="link-warning hovPoint">New here? Create an account as a customer</a></td>
+                <td colSpan={2} style={{ fontSize: '1.5vw', lineHeight: '0.2vw', display: linkDisplay() }} id='link1' ><a onClick={() => { goToPhone('customer') }} className="link-warning hovPoint">New here? Create an account as a customer</a></td>
               </tr>
               <tr>
-                <td colSpan={2} style={{fontSize: '1.5vw' , lineHeight:'0.2vw',display: linkDisplay()}} id='link2' ><a onClick={()=>{goToPhone('driver')}} className="link-warning hovPoint">or as a driver</a></td>
+                <td colSpan={2} style={{ fontSize: '1.5vw', lineHeight: '0.2vw', display: linkDisplay() }} id='link2' ><a onClick={() => { goToPhone('driver') }} className="link-warning hovPoint">or as a driver</a></td>
               </tr>
 
               <tr>
