@@ -26,6 +26,10 @@ const Profile = (props)=>{
                     <td className="text-start ps-3">Phone Number: </td>
                     <td className="text-start">{user.phone}</td>
                   </tr>
+                  <tr>
+                    <td className="text-start ps-3">Address: </td>
+                    <td className="text-start">{user.address}</td>
+                  </tr>
                   <tr style={{display: getRowDisplay('carType')}}>
                     <td className="text-start ps-3">Car-type: </td>
                     <td className="text-start">SUV</td>

@@ -13,8 +13,15 @@ const LoginForm = (props) => {
   const dispatch = useDispatch();
 
   const type = useSelector(state => state.userType);
-  const user = useSelector(state=> state.user);
-  
+  const user = useSelector(state => state.user);
+
+  useEffect(() => {
+    console.log('Component Rerendered');
+    if (!(user === '' || user === null)) {
+      navigate('interface');
+    }
+  }, [user]);
+
 
   function linkDisplay() {
     if (type === 'admin') {
@@ -26,17 +33,13 @@ const LoginForm = (props) => {
   // Reset popUp after refresh
   const handleLogin = async () => {
     dispatch(validateUser(userName, password, type));
-    console.log(user);
-      if (user === '' || user === null) {
-        console.log('Running login function with user ' + user);
-        setPopUp('Incorrect Username or Password')
-        setUserName('');
-        setPassword('');
-      }
-      else {
-        console.log('Taking the user to interface');
-        navigate('interface');
-      }
+
+    setTimeout(()=>{
+      setPopUp('Incorrect Username or Password');
+    },500);
+    setPassType(false);
+    setUserName('');
+    setPassword('');
   }
 
   function handleShow() {

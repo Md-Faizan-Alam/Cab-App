@@ -1,23 +1,24 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setStage } from './Actions/StageAction';
 import './App.css';
 import FrontComponent from './Components/FrontComponent';
 import Modal from './Components/Modal';
 import Navbar from './Components/Navbar';
 
 function App() {
-  const state = useSelector(state=>state);
-  console.log(state);
-
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(setStage('booking'));
+  },[]);
   return (
     <div>
-      <Modal />
+      <Modal title="Confirm Deletion" />
       <Navbar />
       <FrontComponent />
     </div>
   );
 }
-
-// style="height: 80vw;background-image: url('TAXI.jpg');background-size: cover;"
 
 export default App;
 //Anaya is changing......

@@ -7,14 +7,14 @@ const PhonePrompt = (props)=>{
   const navigate = useNavigate();
 
   function getTitle(){
-    if(type=='driver'){
+    if(type==='driver'){
       return 'Drive to fulfil your dreams';
     }
     return 'A car for every occasion';
   }
 
   function registerBlock(){
-    if(props.userType=="customer"){
+    if(type==="customer"){
       navigate('register')
     }
     else{

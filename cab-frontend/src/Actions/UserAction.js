@@ -13,26 +13,11 @@ export const validateUser = (userName, password, type) => {
             payload: response.data
         })
     }
-
-
-    // return{
-    //     type: 'VALIDATE_USER',
-    //     userName: userName,
-    //     password: password,
-    //     userType: type
-    // }
 }
 
-
-// export const validateUser = (userName, password, passedType) => {
-//     return async (dispatch) => {
-//         const response = await axios.get(`http://localhost:3333/${passedType}`);
-//         console.log(response.data[0]);
-//         dispatch({
-//             type: 'VALIDATE_USER',
-//             payload: response.data[0],
-//             userName: userName,
-//             password: password
-//         })
-//     }
-// }
+export const setUser = (user)=>{
+    return{
+        type: 'SET_USER',
+        payload: user
+    }
+}

@@ -15,7 +15,7 @@ const Modal = (props)=>{
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content bg-warning border-3 border-light">
                         <div className="modal-header border-0">
-                            <h5 className="modal-title fw-bold" style={{fontSize: '3.5vh'}} id="exampleModalLabel">Modal title</h5>
+                            <h5 className="modal-title fw-bold" style={{fontSize: '3.5vh'}} id="exampleModalLabel">{props.title}</h5>
                         </div>
                         {/* the view of the writings of modal and next line is not visible properly  */}
                         <div className="modal-body fw-bold text-start" style={{fontSize: '2.5vh'}}>Are you sure?<br/>This can't be undone</div>

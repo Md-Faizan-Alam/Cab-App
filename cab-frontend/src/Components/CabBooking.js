@@ -1,6 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import {setStage} from '../Actions/StageAction';
 
 const CabBooking = (props) => {
+    const dispatch = useDispatch();
+
+    function handleNext(){
+        dispatch(setStage('available'));
+    }
+
     return (
         <>
             <form style={{paddingTop: '3vw'}}>
@@ -47,9 +55,21 @@ const CabBooking = (props) => {
                     <tr>
                         <td></td>
                     </tr>
+                    {/* <tr>
+                        <td colSpan="4"><button type="button" className="btn btn-warning" style={{fontSize: '3vw',padding: '0vw 2vw', fontWeight:'500'}}>Next</button></td>
+                    </tr> */}
                     <tr>
-                        <td colSpan="4"><button type="button" className="btn btn-warning" style={{fontSize: '3vw',padding: '0.5vw 2vw', fontWeight:'10vw'}}>Next</button></td>
-                    </tr>
+                            <td colSpan={4}>
+                                <button
+                                    type="button"
+                                    className="btn btn-warning fw-bold position-relative"
+                                    style={{ fontSize: '2vw', padding: '0.5vw 2vw', top:'2vw' }}
+                                    onClick={handleNext}
+                                >
+                                    Next
+                                </button>
+                            </td>
+                        </tr>
                 </tbody>
             </table>
         </form>

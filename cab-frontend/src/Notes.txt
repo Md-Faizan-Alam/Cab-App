@@ -1,1 +1,0 @@
-1. Configure SideBar according to userType

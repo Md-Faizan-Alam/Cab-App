@@ -9,17 +9,15 @@ const locationRepository = require('./locationRepository');
 const userList = require('./DummyData');
 const cors=require("cors");
 
-
-
 const corsOptions ={
    origin:'*', 
    credentials:true,            //access-control-allow-credentials:true
    optionSuccessStatus:200,
 }
 
-app.use(cors(corsOptions)) // Use this after the variable declaration
 
 // ===================================== Configurations ==============================================
+app.use(cors(corsOptions)) // Use this after the variable declaration
 app.use(bodyParser.json());
 // ======================================= Utilities ============================================
 
@@ -67,6 +65,13 @@ app.get("/driver", async (req, res) => {
         });
 });
 
+app.get("/getLastId", async (req, res) => {
+    const max = await userRepository.getLastId();
+    console.log(max);
+    const str = `${max}`;
+    res.send(str);
+});
+
 // ======================================== Post Mappings ============================================
 
 app.post("/validation", async (req,res)=>{
@@ -100,11 +105,31 @@ app.post("/setUserList", async (req, res) => {
         });
 });
 
+app.post("/saveUser", async (req, res) => {
+    await userRepository.save(req.body)
+        .then((value) => (res.send(value)))
+        .catch((error) => {
+            handleError(res,error);
+        });
+});
+
+
+
 // ======================================== Put Mappings ============================================
 
 app.put("/updateData", async (req, res) => {
     await userRepository.update(req.body)
         .then((value) => res.send('Updated Successfully'))
+        .catch((error) => {
+            handleError(res,error);
+        });
+});
+
+// ======================================== Delete Mappings ============================================
+
+app.delete("/deleteById/:id", async (req, res) => {
+    await userRepository.deleteById(req.params.id)
+        .then((value) => res.send('Deleted Successfully'))
         .catch((error) => {
             handleError(res,error);
         });

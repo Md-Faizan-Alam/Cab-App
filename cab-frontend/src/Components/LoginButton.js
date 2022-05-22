@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setType } from '../Actions/TypeAction';
 
-const SignSet = (props) => {
+const LoginButton = (props) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     // const type = useSelector(state=>state.userType);
@@ -73,4 +73,4 @@ const SignSet = (props) => {
     );
 }
 
-export default SignSet;
+export default LoginButton;

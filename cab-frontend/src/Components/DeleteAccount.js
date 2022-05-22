@@ -23,7 +23,6 @@ const DeleteAccount = (props) => {
                         </tr> */}
                         {/* an email will be sent to the user whose account will be deleted */}
                         <tr>
-                            {/* <td colSpan="2"><button type="button" className="btn btn-warning" style={{ fontSize: '2vw', padding: '0vw 1vw' }}>Confirm Deletion</button></td> */}
                             <td colSpan={2}>
                                 <button
                                     type="button"
