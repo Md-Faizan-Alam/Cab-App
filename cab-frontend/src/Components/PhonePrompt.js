@@ -1,8 +1,17 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const PhonePrompt = (props)=>{
+  const type = useSelector(state=>state.userType);
   const navigate = useNavigate();
+
+  function getTitle(){
+    if(type=='driver'){
+      return 'Drive to fulfil your dreams';
+    }
+    return 'A car for every occasion';
+  }
 
   function registerBlock(){
     if(props.userType=="customer"){
@@ -15,7 +24,7 @@ const PhonePrompt = (props)=>{
     return(
         <>
         <div className="conatiner bg-dark w-50 m-auto text-center text-light position-relative" style={{top: '10vw', fontSize: '3vw', opacity: '0.9',borderRadius: '3vw', paddingTop: '2vw',height: '30vw'}}>
-        <div className="fw-bold text-decoration-underline text-warning">{props.heading}</div>
+        <div className="fw-bold text-decoration-underline text-warning">{getTitle()}</div>
         <form>
           <table className="table text-light table-borderless" style={{marginTop: '4vw'}}>
             <tbody>

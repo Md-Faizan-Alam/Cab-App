@@ -15,10 +15,10 @@ const FrontComponent = (props) => {
             <div style={{ height: '80vw', backgroundImage: `url("./TAXI.jpg")`, backgroundSize: 'cover' }}>
                 <Routes>
                     <Route path='/login' element={<VariableForm type='login' />} />
-                    <Route path='/phoneDriver/register' element={<VariableForm type='registration' heading='Drive to fulfil your dreams' userType="driver" />} />
-                    <Route path='/phoneCustomer/register' element={<VariableForm type='registration' heading='A car for every occasion' userType="customer" />} />
-                    <Route path='/phoneDriver' element={<VariableForm type='phone' heading='Drive to fulfil your dreams' userType="driver"  />} />
-                    <Route path='/phoneCustomer' element={<VariableForm type='phone' heading='A car for every occasion' userType="customer"  />} />
+                    <Route path='/login/phone' element={<VariableForm type='phone' /> }/>
+                    <Route path='/login/phone/register' element={<VariableForm type='registration' /> }/>
+                    {/* <Route path='/phoneDriver/register' element={<VariableForm type='registration' heading='Drive to fulfil your dreams' userType="driver" />} />
+                    <Route path='/phoneCustomer/register' element={<VariableForm type='registration' heading='A car for every occasion' userType="customer" />} /> */}
                     <Route path='/login/interface' element={<UserInterface />} >
                         <Route index element={<Profile />} />
                         <Route path='/login/interface/trips' element={<Trips />} />

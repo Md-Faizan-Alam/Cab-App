@@ -7,6 +7,17 @@ const cabRepository = require('./cabRepository');
 const tripRepository = require('./tripRepository');
 const locationRepository = require('./locationRepository');
 const userList = require('./DummyData');
+const cors=require("cors");
+
+
+
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions)) // Use this after the variable declaration
 
 // ===================================== Configurations ==============================================
 app.use(bodyParser.json());
@@ -48,7 +59,7 @@ app.get("/customer", async (req, res) => {
 
 app.get("/driver", async (req, res) => {
     await userRepository
-        .findByKey('type', 'customer')
+        .findByKey('type', 'driver')
         .then(value => res.send(value))
         .catch(error => {
             handleError(res,error);

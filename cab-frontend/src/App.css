@@ -51,5 +51,8 @@ th{
   height: var(--imgSide);
   margin-bottom: 2vw;
 }
+.hovPoint:hover{
+  cursor: pointer;
+}
 
 

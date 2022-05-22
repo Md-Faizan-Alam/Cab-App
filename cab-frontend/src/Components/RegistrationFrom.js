@@ -1,10 +1,20 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const RegistrationForm = (props)=>{
+  const type = useSelector(state=>state.userType);
+
+  function getTitle(){
+    if(type=='driver'){
+      return 'Drive to fulfil your dreams';
+    }
+    return 'A car for every occasion';
+  }
+
     return(
         <>
         <div className="conatiner bg-dark w-75 m-auto text-center text-light position-relative" style={{top: '10vw', fontSize: '3vw', opacity: '0.9',borderRadius: '3vw', paddingTop: '2vw',height: '50vw'}}>
-        <div className="fw-bold text-decoration-underline text-warning" style={{padding: '1vw'}}>{props.heading}</div>
+        <div className="fw-bold text-decoration-underline text-warning" style={{padding: '1vw'}}>{getTitle()}</div>
         <form>
           <table className="table text-light table-borderless table-responsive-xl" style={{marginTop: '4vw'}}>
             <tbody>

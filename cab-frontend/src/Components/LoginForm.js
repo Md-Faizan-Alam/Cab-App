@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { setType } from '../Actions/TypeAction';
+import { validateUser } from '../Actions/UserAction';
 
 const LoginForm = (props) => {
   const [passType , setPassType] = useState(false);
@@ -8,22 +10,37 @@ const LoginForm = (props) => {
   const [password , setPassword] = useState('');
   const [popUp , setPopUp] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const type = useSelector(state=>state.userType);
-  
-  useEffect(()=>{
-    console.log(type);
-  },[]);
+  const user = useSelector(state=>state.user);
+
+  function linkDisplay(){
+    if(type==='admin'){
+      return 'none';
+    }
+    return '';
+  }
 
   function handleLogin() {
-    if(userName==="PP" && password==="AA"){
-      navigate('interface');
-    }
-    else{
+    dispatch(validateUser(userName,password,type));
+    if(user===null){
       setPopUp('Incorrect Username or Password')
       setUserName('');
       setPassword('');
     }
+    else{
+      navigate('interface');
+    }
+
+    // if(userName==="PP" && password==="AA"){
+    //   navigate('interface');
+    // }
+    // else{
+    //   setPopUp('Incorrect Username or Password')
+    //   setUserName('');
+    //   setPassword('');
+    // }
   }
   function handleShow() {
     console.log("Entering handleShow");
@@ -36,6 +53,13 @@ const LoginForm = (props) => {
   function handlePassword(e){
     setPassword(e.target.value);
   }
+
+  function goToPhone(passedType){
+    dispatch(setType(passedType));
+    navigate('phone');
+  }
+
+  
 
   return (
     <>
@@ -50,20 +74,20 @@ const LoginForm = (props) => {
               </tr>
               <tr>
                 <td className="text-end" >Name: </td>
-                <td ><input type="text" className="form-control w-75" style={{ height: '4vw', fontSize: '2vw', padding: '1vw' }} onChange={handleUserName} value={userName} id="inputPassword2" placeholder="Enter your full name" /></td>
+                <td ><input type="text" className="form-control w-75" style={{ height: '4vw', fontSize: '2vw', padding: '1vw' }} onChange={handleUserName} value={userName} id="userName" placeholder="Enter your full name" /></td>
               </tr>
               <tr>
                 <td className="text-end" >Password: </td>
-                <td ><input type={passType ? "text" : "password"} className="form-control w-75" style={{ height: '4vw', fontSize: '2vw', padding: '1vw' }} onChange={handlePassword} value={password} id="inputPassword2" placeholder="Enter your password" /></td>
+                <td ><input type={passType ? "text" : "password"} className="form-control w-75" style={{ height: '4vw', fontSize: '2vw', padding: '1vw' }} onChange={handlePassword} value={password} id="password" placeholder="Enter your password" /></td>
               </tr>
               <tr>
-                <td colSpan={2} style={{fontSize: '1.5vw'}} >Show Password<input onChange={handleShow} checked={passType} type="checkbox" className="form-check-input" style={{ padding: '0.5vw', marginLeft:'1vw' }} id="inputPassword2"  /></td>
+                <td colSpan={2} style={{fontSize: '1.5vw'}} >Show Password<input onChange={handleShow} checked={passType} type="checkbox" className="form-check-input" style={{ padding: '0.5vw', marginLeft:'1vw' }} id="passType"  /></td>
               </tr>
               <tr>
-                <td colSpan={2} style={{fontSize: '1.5vw', lineHeight:'0.2vw'}} ><Link to="/phoneCustomer" className="link-warning">New here? Create an account as a customer</Link></td>
+                <td colSpan={2} style={{fontSize: '1.5vw', lineHeight:'0.2vw',display: linkDisplay()}} id='link1' ><a onClick={()=>{goToPhone('customer')}} className="link-warning hovPoint">New here? Create an account as a customer</a></td>
               </tr>
               <tr>
-                <td colSpan={2} style={{fontSize: '1.5vw' , lineHeight:'0.2vw'}} ><Link to="/phoneDriver" className="link-warning">or as a driver</Link></td>
+                <td colSpan={2} style={{fontSize: '1.5vw' , lineHeight:'0.2vw',display: linkDisplay()}} id='link2' ><a onClick={()=>{goToPhone('driver')}} className="link-warning hovPoint">or as a driver</a></td>
               </tr>
 
               <tr>

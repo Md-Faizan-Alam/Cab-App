@@ -7,6 +7,6 @@ import { UserReducer } from "../Reducers/UserReducer";
 
 export default configureStore({
     reducer: {user: UserReducer,userType: TypeReducer},
-    // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger).concat(thunk),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger).concat(thunk),
     devTools: [composeWithDevTools]
 })
