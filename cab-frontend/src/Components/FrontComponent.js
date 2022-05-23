@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import CabBooking from './CabBooking';
+import Home from './Home';
 import Profile from './Profile';
 import Feedback from './Feedback';
 import GiveFeedback from './GiveFeedback';
@@ -8,7 +8,6 @@ import Trips from './Trips';
 import UserInterface from './UserInterface';
 import VariableForm from './VariableForm';
 import DeleteAccount from './DeleteAccount';
-import AvailableCabs from './AvailableCabs';
 import BookingStage from './BookingStage';
 import { useSelector } from 'react-redux';
 
@@ -19,6 +18,7 @@ const FrontComponent = (props) => {
         <>
             <div style={{ height: '80vw', backgroundImage: `url("./TAXI.jpg")`, backgroundSize: 'cover' }}>
                 <Routes>
+                    <Route path='/' element={<Home />} />
                     <Route path='/login' element={<VariableForm type='login' />} />
                     <Route path='/login/phone' element={<VariableForm type='phone' /> }/>
                     <Route path='/login/phone/registerCustomer' element={<VariableForm type='customer' /> }/>

@@ -26,6 +26,18 @@ function handleError(res, error) {
     res.send(error.message + '\nTransaction Failed');
     // res.send('Transaction Failed');
 }
+function showObject(object){
+    console.log(object[0])
+    // for(const key in object){
+    //     console.log(`${key} : ${showObject2(object[key])}`);
+    // }
+}
+function showObject2(object){
+    for(const key in object){
+        console.log(`${key} : ${object[key]}`);
+    }
+}
+
 
 // ======================================= Get Mappings ============================================
 
@@ -63,6 +75,43 @@ app.get("/driver", async (req, res) => {
         .catch(error => {
             handleError(res,error);
         });
+});
+
+app.get("/available", async(req,res)=>{
+    let driverList;
+    let cabList;
+    let availableList = [];
+    let ratePerKm;
+    let carType;
+
+    await userRepository
+        .findByKey('type', 'driver')
+        .then(value => driverList = value)
+        .catch(error =>handleError(res,error));
+
+    await cabRepository
+        .findAll().then(value=>cabList = value)
+        .catch(error=>handleError(res,error));
+
+    for(const i in driverList){
+        for(const j in cabList){
+            if(cabList[j].cab_id == driverList[i].cab_id){
+                ratePerKm = cabList[j].per_km_rate;
+                carType = cabList[j].type;
+                break;
+            }
+        }
+        availableList.push({
+            driverId: driverList[i].driver_id,
+            id: i,
+            name: driverList[i].first_name,
+            rating: driverList[i].driver_rating,
+            ratePerKm: ratePerKm,
+            carType: carType
+        });
+    }
+
+    res.send(availableList);
 });
 
 app.get("/getLastId", async (req, res) => {
@@ -106,8 +155,19 @@ app.post("/setUserList", async (req, res) => {
 });
 
 app.post("/saveUser", async (req, res) => {
-    await userRepository.save(req.body)
-        .then((value) => (res.send(value)))
+    const user = req.body.user;
+    let cab;
+    let cabId;
+    if(user.type == 'driver'){
+        cab = req.body.cab;
+        await cabRepository.save(cab).catch(error=>handleError(res,error));
+        cabId = await cabRepository.getLastId();
+        user.cab_id = cabId;
+    }
+    await userRepository.save(user)
+        .then(async (value) => {
+            res.send(value);
+        })
         .catch((error) => {
             handleError(res,error);
         });

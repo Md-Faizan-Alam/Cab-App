@@ -22,10 +22,10 @@ export const setUser = (user)=>{
     }
 }
 
-export const saveUser = (user)=>{
+export const saveUser = (user,cab)=>{
 
     return async(dispatch) => {
-        const response = await axios.post('http://localhost:3333/saveUser',user);
+        const response = await axios.post('http://localhost:3333/saveUser',{user: user, cab:cab});
         console.log('RESULT Data: ', response.data);
         dispatch({
             type: 'SAVE_USER',

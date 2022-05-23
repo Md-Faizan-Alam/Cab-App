@@ -8,6 +8,7 @@ const tripRepository = new Repository('cab_user', {
     to_time: 'String',
     from_location: 'String',
     to_location: 'String',
+    ride: 'String',
     customer_id: 'Integer',
     driver_id: 'Integer'
 });

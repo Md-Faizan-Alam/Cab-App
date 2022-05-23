@@ -4,6 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { saveUser } from '../Actions/UserAction';
 
 const DriverRegistration = () => {
+
+  const carMap = {
+    SUV: 300,
+    Swift: 200,
+    Sedan: 150,
+    Toyota: 400,
+    Dzire: 250
+  }
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -49,7 +58,7 @@ const DriverRegistration = () => {
   }
 
   function handleRegister() {
-    if (password === confirm) {
+    if (password === confirm && !(password ===null)) {
       const user = {
         type: 'driver',
         first_name: firstName,
@@ -63,16 +72,13 @@ const DriverRegistration = () => {
         cab_id: 1
       }
 
-      // const cab = {
-      //   cab_id: 'Integer',
-      //   type: carType,
-      //   per_km_rate: 'Float',
-      //   driver_id: 'Integer'
-      // }
+      const cab = {
+        type: carType,
+        per_km_rate: carMap[carType],
+        driver_id: null    // This has to be done on the backend 3 step
+      }
 
-      // dispatch(saveCab(cab));
-
-      dispatch(saveUser(user));
+      dispatch(saveUser(user, cab));
       navigate('login');
     }
     else {
@@ -133,10 +139,10 @@ const DriverRegistration = () => {
                 <td><select value={carType} onChange={handleCarType} style={{ position: 'relative', right: '4.5vw', width: '75%', height: '4vw', fontSize: '2vw', padding: '0vw', borderRadius: '0.25rem' }}>
                   <option defaultValue={0}>Choose car type</option>
                   <option value="SUV">SUV</option>
-                  <option value="Prime">Prime</option>
-                  <option value="Mini">Mini</option>
+                  <option value="Swift">Swift</option>
                   <option value="Sedan">Sedan</option>
-                  <option value="Micro">Micro</option>
+                  <option value="Toyota">Toyota</option>
+                  <option value="Dzire">Dzire</option>
                 </select></td>
               </tr>
 

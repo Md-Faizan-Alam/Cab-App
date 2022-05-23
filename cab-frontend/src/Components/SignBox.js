@@ -12,7 +12,7 @@ const SignBox = () => {
         login: LoginButton,
         logout: LogoutButton
     }
-    const LogBox = logBox[user===''? 'login' : 'logout'];
+    const LogBox = logBox[(user==='' || user===null)? 'login' : 'logout'];
     return (
         <>
             <LogBox />

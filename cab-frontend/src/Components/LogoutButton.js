@@ -9,7 +9,7 @@ const LogoutButton = (props) => {
     const dispatch = useDispatch();
 
     function handleLogout(){
-        dispatch(setUser(''));
+        dispatch(setUser(null));
         navigate('login');
     }
     

@@ -13,7 +13,7 @@ const LoginButton = (props) => {
     function loginBlock(passedType) {
         console.log('loginBlock has been called for ' + passedType);
         dispatch(setType(passedType));
-        document.getElementById('collapseToggle').click();
+        // document.getElementById('collapseToggle').click();
         navigate('login');
     }
 
