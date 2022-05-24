@@ -24,6 +24,7 @@ const LogoutButton = (props) => {
                         <a
                             className="nav-link fs-4"
                             role="button"
+                            id='logoutButton'
                             onClick={handleLogout}
                         >
                             Logout

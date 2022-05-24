@@ -11,6 +11,9 @@ export const UserReducer = (user = '', action) => {
         case 'SAVE_USER':
             console.log(action.payload);
             return user;
+        case 'DELETE_USER':
+            console.log(action.payload);
+            return user;
         default:
             localStorage.getItem('user');
             return user;

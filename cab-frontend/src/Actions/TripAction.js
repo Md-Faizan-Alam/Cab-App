@@ -1,20 +1,22 @@
-export const setRide = (from,to,ride,customerId) => {
-     const fromTime = Date.now();
+import axios from "axios";
+
+export const setRide = (trip) => {
     return{
         type: 'SET_RIDE',
-        from: from,
-        to: to ,
-        ride: ride,
-        customerId: customerId,
-        fromTime: fromTime
+        trip: trip
     }
 }
 
-export const updateRide = (driverId,carType,trip) => {
-    return{
-        type: 'UPDATE_RIDE',
-        driverId: driverId,
-        carType: carType,
-        trip: trip
+export const postTrip = (trip) =>{
+    return async(dispatch) => {
+        localStorage.setItem('trip',trip);
+        const response = await axios.post('http://localhost:3333/postTrip',trip);
+        console.log('RESULT Data: ', response.data);
+        // dispatch(getDriver(trip.driver_id));
+        // dispatch(setStage('confirm'));
+        dispatch({
+            type: 'POST_RIDE',
+            payload: response.data
+        })
     }
 }

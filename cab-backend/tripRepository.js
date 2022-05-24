@@ -1,6 +1,6 @@
 const Repository = require('../../../CRUD/Repository.js');
 
-const tripRepository = new Repository('cab_user', {
+const tripRepository = new Repository('cab_trips', {
     trip_id: 'Integer',
     fare: 'Float',
     distance: 'Integer',

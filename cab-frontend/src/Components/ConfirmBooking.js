@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setStage } from '../Actions/StageAction';
 
@@ -8,17 +9,35 @@ const ConfirmBooking = (props) => {
   const [fill, setFill] = useState([dEmpty, dEmpty, dEmpty, dEmpty, dEmpty]);
   const [selected, setSelected] = useState(false);
   const dispatch = useDispatch();
-  // console.log(fill);
+  const trip = useSelector(state=>state.trip);
+  console.log('the trip is '+trip);
+  const [rating,setRating] = useState(1);
+  // const [driver,setDriver] = useState([]);
+  // let driver1;
 
+  // useEffect(()=>{
+  //   const getDriver = async ()=>{
+  //     const response = await axios.get(`http://localhost:3333/userById/${trip.driver_id}`)
+  //     .then(response=>response.data);
+  //     setDriver(response);
+  //     console.log(driver);
+  //   }
+  //   getDriver();
+  //   console.log(driver);
+  // },[]);
+  
+  // driver1 = driver ? driver.map(val=>val) : null;
+  // console.log(driver1)
+  
   function handleRate() {
     dispatch(setStage('booking'));
   }
-
+  
   function handleSelect(e){
     setSelected(!selected);
-
+    setRating(e.target.id);
   }
-
+  
   function handleEnter(e) {
     console.log('Entered the star ' + e.target.id);
     if (!selected) {
@@ -35,10 +54,10 @@ const ConfirmBooking = (props) => {
       console.log(fillArr);
       setFill(fillArr);
     }
-
-
+    
+    
   }
-
+  
   function handleLeave(e) {
     console.log('Leaving the star ' + e.target.id);
     if(!selected){
@@ -46,6 +65,10 @@ const ConfirmBooking = (props) => {
     }
   }
 
+  // console.log('Trip is '+trip);
+  // for(let key in trip){
+  //   console.log(`${key} : ${trip[key]}`);
+  // }
   return (
     <>
       <table className="table text-light table-borderless table-responsive-xl position-relative" style={{ top: '3vw' }}>
@@ -55,31 +78,27 @@ const ConfirmBooking = (props) => {
           </tr>
           <tr>
             <td className="text-start ps-3">From: </td>
-            <td className="text-start">From Location</td>
+            <td className="text-start">{trip['from_location']}</td>
           </tr>
           <tr>
             <td className="text-start ps-3">To: </td>
-            <td className="text-start">To Location</td>
+            <td className="text-start">{trip['to_location']}</td>
           </tr>
-          <tr>
+          {/* <tr>
             <td className="text-start ps-3">Driver Name: </td>
-            <td className="text-start">Driver Name</td>
+            <td className="text-start">{driver1[0]['first_name']}</td>
           </tr>
           <tr>
             <td className="text-start ps-3">Contact Number: </td>
-            <td className="text-start">Contact Number</td>
-          </tr>
-          <tr>
-            <td className="text-start ps-3">Car Type: </td>
-            <td className="text-start">Car Type</td>
-          </tr>
+            <td className="text-start">{driver1[0]['phone']}</td>
+          </tr> */}
           <tr>
             <td className="text-start ps-3">Ride Type: </td>
-            <td className="text-start">Ride Type</td>
+            <td className="text-start">{trip['ride']}</td>
           </tr>
           <tr>
             <td className="text-start ps-3">Total Amount: </td>
-            <td className="text-start">Total Amount</td>
+            <td className="text-start">{trip['fare']}</td>
           </tr>
           <tr>
             <td colSpan={2} className="ps-0">

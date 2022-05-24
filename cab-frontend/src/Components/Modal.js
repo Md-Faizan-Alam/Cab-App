@@ -1,6 +1,17 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { deleteUser } from '../Actions/UserAction';
 
 const Modal = (props)=>{
+    const user = useSelector(state=>state.user);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    function handleDelete(){
+        dispatch(deleteUser(user.user_id));
+        document.getElementById('logoutButton').click();
+    }
     return(
         <>
         <div
@@ -27,7 +38,15 @@ const Modal = (props)=>{
                             >
                                 Cancel
                             </button>
-                            <button type="button" className="btn btn-dark">Delete</button>
+                            <button
+                                type="button"
+                                className="btn btn-dark"
+                                data-bs-dismiss="modal"
+                                onClick={handleDelete}
+                            >
+                                Delete
+                            </button>
+                            {/* <button type="button" className="btn btn-dark">Delete</button> */}
                         </div>
                     </div>
                 </div>

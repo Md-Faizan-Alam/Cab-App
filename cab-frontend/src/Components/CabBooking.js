@@ -12,7 +12,33 @@ const CabBooking = (props) => {
         const from = document.getElementById('from').value;
         const to = document.getElementById('to').value;
         const ride = document.getElementById('ride').value;
-        dispatch(setRide(from,to,ride,user.user_id));
+
+        const locationMap = {
+            Exide: 0,
+            Shyambazar: 1,
+            Narkelbagan: 2,
+            CityCenter1: 3,
+            JodhpurPark: 4,
+            EMBypass: 5,
+            DumDum: 6,
+            QuestMall: 7,
+            Khidderpore: 8
+        }
+        const distance = Math.abs(locationMap[from] - locationMap[to]);
+
+        const time = Date.now();
+        const trip = {
+            fare: null,
+            distance: distance,
+            from_time: time,
+            to_time: time,
+            from_location: from,
+            to_location: to,
+            ride: ride,
+            customer_id: user.user_id,
+            driver_id: null
+        }
+        dispatch(setRide(trip));
         dispatch(setStage('available'));
     }
 

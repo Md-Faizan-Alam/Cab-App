@@ -77,6 +77,15 @@ app.get("/driver", async (req, res) => {
         });
 });
 
+app.get("/userById/:id", async (req, res) => {
+    await userRepository
+        .findById(req.params.id)
+        .then(value => res.send(value))
+        .catch(error => {
+            handleError(res,error);
+        });
+});
+
 app.get("/available", async(req,res)=>{
     let driverList;
     let cabList;
@@ -102,7 +111,7 @@ app.get("/available", async(req,res)=>{
             }
         }
         availableList.push({
-            driverId: driverList[i].driver_id,
+            driverId: driverList[i].user_id,
             id: i,
             name: driverList[i].first_name,
             rating: driverList[i].driver_rating,
@@ -120,6 +129,32 @@ app.get("/getLastId", async (req, res) => {
     const str = `${max}`;
     res.send(str);
 });
+
+app.get("/trips",async(req,res)=>{
+    await tripRepository
+        .findAll()
+        .then((value) => res.send(value))
+        .catch((error) => {
+            handleError(res,error);
+        });
+})
+app.get("/tripsCustomer/:id",async(req,res)=>{
+    await tripRepository
+        .findByKey('customer_id',req.params.id)
+        .then((value) => res.send(value))
+        .catch((error) => {
+            handleError(res,error);
+        });
+})
+
+app.get("/tripsDriver/:id",async(req,res)=>{
+    await tripRepository
+        .findByKey('driver_id',req.params.id)
+        .then((value) => res.send(value))
+        .catch((error) => {
+            handleError(res,error);
+        });
+})
 
 // ======================================== Post Mappings ============================================
 
@@ -172,6 +207,17 @@ app.post("/saveUser", async (req, res) => {
             handleError(res,error);
         });
 });
+
+app.post('/postTrip',async (req,res)=>{
+    const trip = req.body;
+    await tripRepository.save(trip)
+    .then(async (value) => {
+        res.send(value);
+    })
+    .catch((error) => {
+        handleError(res,error);
+    });
+})
 
 
 

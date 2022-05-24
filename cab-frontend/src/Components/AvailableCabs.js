@@ -3,69 +3,96 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOption } from '../Actions/OptionAction';
 import { setStage } from '../Actions/StageAction';
-import { updateRide } from '../Actions/TripAction';
+import { setRide, postTrip } from '../Actions/TripAction';
 
 const AvailableCabs = (props) => {
-  const currentTrip = useSelector(state=>state.trip);
+  const currentTrip = useSelector(state => state.trip);
+  console.log('Current Trip Before ' + currentTrip);
   const dispatch = useDispatch();
+  let checkedOption;
+
+  useEffect(() => {
+    dispatch(setOption());
+  }, []);
+
   let optionList = useSelector(state => state.options);
   let checkArr = []
-  for(let i=0;i<optionList.length;i++){
+  for (let i = 0; i < optionList.length; i++) {
     checkArr.push(false);
   }
-  const [checked,setChecked] = useState(checkArr);
+  const [checked, setChecked] = useState(checkArr);
 
-  function handleClick(e){
-    console.log('Clicked the input '+e.target.id);
+  function handleClick(e) {
+    console.log('Clicked the input ' + e.target.id);
     let tempArr = checkArr;
     tempArr[e.target.id] = true;
     setChecked(tempArr);
+    console.log(checked);
   }
 
-  function trueOption(){
-    for(let i in checked){
-      if(checked[i]){
+  function trueOption() {
+    for (let i in checked) {
+      if (checked[i]) {
         return i;
       }
     }
     return null;
   }
 
-  console.log(currentTrip);
+  // console.log('Current Trip is \n ' + currentTrip);
+  // for(const key in currentTrip){
+  //   console.log(key+' : '+currentTrip[key]);
+  // }
 
-  const options = optionList ? optionList.map((val) => 
+  const options = optionList ? optionList.map((val) =>
     <tr key={val.id}>
       <td colSpan={4}>
-        <input type="radio" name="selectedDriver" checked={checked[val.id]}  className="btn-check" autoComplete="off" />
-        <label id={val.id} onClick={handleClick} className="btn btn-outline-warning" style={{ width: '60vw', fontSize: '2vw', padding: '1vw' }}>
+        <input type="radio" name="selectedDriver" id={val.id} checked={checked[val.id]} onChange={handleClick} className="btn-check" autoComplete="off" />
+        <label htmlFor={val.id} className="btn btn-outline-warning" style={{ width: '60vw', fontSize: '2vw', padding: '1vw' }}>
           <span className='position-relative' style={{ right: '20vw' }}>{val.name}</span>
           <span className='position-relative' style={{ right: '10vw' }}>{val.carType}</span>
           <span className='position-relative' style={{ left: '3vw' }}>{val.ratePerKm}</span>
           <span className='position-relative' style={{ left: '15vw' }}>{val.rating}</span>
-          </label>
+        </label>
       </td>
     </tr>) : <tr><td>Not Found</td></tr>;
 
+  console.log('This is ' + optionList);
 
-useEffect(() => {
-  dispatch(setOption());
-}, []);
 
-console.log('This is ' + optionList);
+ function handleNext() {
+    console.log('Entered Handle Next');
+    console.log('First Point');
+    const carMap = {
+      SUV: 300,
+      Swift: 200,
+      Sedan: 150,
+      Toyota: 400,
+      Dzire: 250
+    }
+    console.log('Second Point');
+    checkedOption = trueOption();
+    console.log(checkedOption);
+    console.log('Third Point');
+    if (!(checkedOption === null)) {
+      console.log('Fourth Point');
+      let changedTrip = currentTrip;
+      console.log('Fifth Point');
+      changedTrip['driver_id'] = optionList[checkedOption]['driverId'];
+      console.log('Sixth Point');
+      changedTrip['fare'] = changedTrip['distance'] * carMap[optionList[checkedOption]['carType']];
+      console.log('Seventh Point');
+      console.log(changedTrip);
+      dispatch(postTrip(changedTrip));
+      dispatch(setStage('confirm'));
+      console.log('Eighth Point');
+    }
+  }
 
   function handleBack() {
     dispatch(setStage('booking'));
   }
-  function handleNext() {
-    const checkedOption = trueOption();
-    if(!(checkedOption===null)){
-      console.log(optionList);
-      console.log(checkedOption);
-      console.log(optionList[checkedOption]);
-      dispatch(updateRide(optionList[checkedOption].driverId,optionList[checkedOption].carType,currentTrip));
-      dispatch(setStage('confirm'));
-    }
-  }
+
   return (
     <>
       <table className="table text-light table-borderless" style={{ fontSize: '2vw' }}>
@@ -75,39 +102,8 @@ console.log('This is ' + optionList);
           </tr>
         </thead>
         <tbody>
+
           {options}
-
-          {/* <tr>
-            <td colSpan={4}>
-              <input  type="radio"  className="btn-check sideBar" autoComplete="off" />
-              <label className="btn btn-outline-warning" style={{ width: '60vw', fontSize: '2vw', padding: '1vw' }}><span className='position-relative' style={{ right: '12vw' }}>DriverName</span><span>Rating</span><span className='position-relative' style={{ left: '12vw' }}>Rate/Km</span></label>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={4}>
-              <input  type="radio" className="btn-check sideBar" autoComplete="off" />
-              <label className="btn btn-outline-warning" style={{ width: '60vw', fontSize: '2vw', padding: '1vw' }}><span className='position-relative' style={{ right: '12vw' }}>DriverName</span><span>Rating</span><span className='position-relative' style={{ left: '12vw' }}>Rate/Km</span></label>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={4}>
-              <input  type="radio" className="btn-check sideBar" autoComplete="off" />
-              <label className="btn btn-outline-warning" style={{ width: '60vw', fontSize: '2vw', padding: '1vw' }}><span className='position-relative' style={{ right: '12vw' }}>DriverName</span><span>Rating</span><span className='position-relative' style={{ left: '12vw' }}>Rate/Km</span></label>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={4}>
-              <input  type="radio" className="btn-check sideBar" autoComplete="off" />
-              <label className="btn btn-outline-warning" style={{ width: '60vw', fontSize: '2vw', padding: '1vw' }}><span className='position-relative' style={{ right: '12vw' }}>DriverName</span><span>Rating</span><span className='position-relative' style={{ left: '12vw' }}>Rate/Km</span></label>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={4}>
-              <input  type="radio" className="btn-check sideBar" autoComplete="off" />
-              <label className="btn btn-outline-warning" style={{ width: '60vw', fontSize: '2vw', padding: '1vw' }}><span className='position-relative' style={{ right: '12vw' }}>DriverName</span><span>Rating</span><span className='position-relative' style={{ left: '12vw' }}>Rate/Km</span></label>
-            </td>
-          </tr> */}
-
 
           <tr>
             <td colSpan={2}><svg xmlns="http://www.w3.org/2000/svg" onClick={handleBack} width="80" height="80" fill="#ffc107" style={{ width: '5vw', height: '5vw', position: 'relative' }} className="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">

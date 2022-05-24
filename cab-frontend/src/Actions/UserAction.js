@@ -33,3 +33,15 @@ export const saveUser = (user,cab)=>{
         })
     }
 }
+
+export const deleteUser = (id)=>{
+
+    return async(dispatch) => {
+        const response = await axios.delete('http://localhost:3333/deleteById/'+id);
+        console.log('RESULT Data: ', response.data);
+        dispatch({
+            type: 'DELETE_USER',
+            payload: response.data
+        })
+    }
+}
