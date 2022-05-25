@@ -1,6 +1,10 @@
 import axios from "axios";
 
 export const setRide = (trip) => {
+    console.log(typeof(trip));
+    for(let key in trip){
+        console.log(`${key} : ${trip[key]}`);
+    }
     return{
         type: 'SET_RIDE',
         trip: trip

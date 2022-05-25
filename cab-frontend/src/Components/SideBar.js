@@ -55,8 +55,8 @@ const SideBar = (props)=>{
             <input onChange={sideBarToggle} checked={check.trips} value='trips' type="radio" className="btn-check sideBar" name="btnradio" id="btnradio2" autoComplete="off"/>
           <label className="btn btn-outline-warning" style={{width: '20vw',fontSize: '2vw',padding: '1vw', display: getToggleDisplay('trips') }} htmlFor="btnradio2">Trips</label>
           
-            <input onChange={sideBarToggle} checked={check.feedback} value='feedback' type="radio" className="btn-check sideBar" name="btnradio" id="btnradio3" autoComplete="off"/>
-          <label className="btn btn-outline-warning" style={{width: '20vw',fontSize: '2vw',padding: '1vw', display: getToggleDisplay('feedback') }} htmlFor="btnradio3">Feedback</label>
+            {/* <input onChange={sideBarToggle} checked={check.feedback} value='feedback' type="radio" className="btn-check sideBar" name="btnradio" id="btnradio3" autoComplete="off"/>
+          <label className="btn btn-outline-warning" style={{width: '20vw',fontSize: '2vw',padding: '1vw', display: getToggleDisplay('feedback') }} htmlFor="btnradio3">Feedback</label> */}
 
           <input onChange={sideBarToggle} checked={check.giveFeedback} value='giveFeedback' type="radio" className="btn-check sideBar" name="btnradio" id="btnradio4" autoComplete="off"/>
           <label className="btn btn-outline-warning" style={{width: '20vw',fontSize: '2vw',padding: '1vw', display: getToggleDisplay('giveFeedback') }} htmlFor="btnradio4">Give us Feedback</label>

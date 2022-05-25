@@ -38,7 +38,7 @@ const Trips = (props) => {
       <th scope="row">{trip.trip_id}</th>
       <td >{trip.from_location}</td>
       <td >{trip.to_location}</td>
-      <td >{trip.from_time}</td>
+      {/* <td >{trip.from_time}</td> */}
       <td >{trip.fare}</td>
     </tr>
   ) : <tr><td colSpan={5}>Not Found</td></tr>
@@ -52,7 +52,7 @@ const Trips = (props) => {
             <th scope="col">#</th>
             <th scope="col">From</th>
             <th scope="col">To</th>
-            <th scope="col">Date</th>
+            {/* <th scope="col">Date</th> */}
             <th scope="col">Payment (Rs.)</th>
           </tr>
         </thead>

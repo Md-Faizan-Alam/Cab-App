@@ -12,6 +12,6 @@ import { UserReducer } from "../Reducers/UserReducer";
 
 export default configureStore({
     reducer: {user: UserReducer,userType: TypeReducer,stage: StageReducer,phone: PhoneReducer,options: OptionReducer,trip: TripReducer,driver: DriverReducer},
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk).concat(logger),
     devTools: [composeWithDevTools]
 })

@@ -8,6 +8,7 @@ const tripRepository = require('./tripRepository');
 const locationRepository = require('./locationRepository');
 const userList = require('./DummyData');
 const cors=require("cors");
+const transporter = require('../../../CRUD/mail.js');
 
 const corsOptions ={
    origin:'*', 
@@ -193,6 +194,12 @@ app.post("/saveUser", async (req, res) => {
     const user = req.body.user;
     let cab;
     let cabId;
+    const mail = {
+        from: 'wheelin.app@gmail.com',
+        to: user.email,
+        subject: 'Account Created',
+        text: 'Hello,\n\tYour account has been successfully created\n\tWe hope you have a pleasant experience\n\t\t\t\t\tRegards, Wheelin Team'
+      };
     if(user.type == 'driver'){
         cab = req.body.cab;
         await cabRepository.save(cab).catch(error=>handleError(res,error));
@@ -201,6 +208,13 @@ app.post("/saveUser", async (req, res) => {
     }
     await userRepository.save(user)
         .then(async (value) => {
+            transporter.sendMail(mail, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                }
+              });
             res.send(value);
         })
         .catch((error) => {

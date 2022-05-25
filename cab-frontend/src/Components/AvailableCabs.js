@@ -7,6 +7,10 @@ import { setRide, postTrip } from '../Actions/TripAction';
 
 const AvailableCabs = (props) => {
   const currentTrip = useSelector(state => state.trip);
+  // for(let key in currentTrip){
+  //   console.log(`${key} and`)
+  // }
+  console.log(typeof(currentTrip));
   console.log('Current Trip Before ' + currentTrip);
   const dispatch = useDispatch();
   let checkedOption;
@@ -40,9 +44,9 @@ const AvailableCabs = (props) => {
   }
 
   // console.log('Current Trip is \n ' + currentTrip);
-  // for(const key in currentTrip){
-  //   console.log(key+' : '+currentTrip[key]);
-  // }
+  for(const key in currentTrip){
+    console.log(key+' : '+currentTrip[key]);
+  }
 
   const options = optionList ? optionList.map((val) =>
     <tr key={val.id}>
@@ -77,7 +81,7 @@ const AvailableCabs = (props) => {
     if (!(checkedOption === null)) {
       console.log('Fourth Point');
       let changedTrip = currentTrip;
-      console.log('Fifth Point');
+      console.log(optionList[checkedOption]['driverId']);
       changedTrip['driver_id'] = optionList[checkedOption]['driverId'];
       console.log('Sixth Point');
       changedTrip['fare'] = changedTrip['distance'] * carMap[optionList[checkedOption]['carType']];
