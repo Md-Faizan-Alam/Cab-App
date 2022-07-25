@@ -1,10 +1,10 @@
+import './App.css';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setStage } from './Actions/StageAction';
-import './App.css';
 import FrontComponent from './Components/FrontComponent';
 import Modal from './Components/Modal';
-import Navbar from './Components/Navbar';
+import Navbar from './Replacements/Navbar';
 
 function App() {
   const dispatch = useDispatch();

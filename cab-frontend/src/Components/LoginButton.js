@@ -26,10 +26,10 @@ const LoginButton = (props) => {
     return (
         <>
             <button className="navbar-toggler" type="button" id='collapseToggle' data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
-                <span className="navbar-toggler-icon"></span>
+                <span className="navbar-toggler-icon" style={{width: '1em'}}></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
+                <ul className="navbar-nav ms-auto me-2 mb-2 mb-lg-0">
                     <li className="nav-item dropdown">
                         <a
                             className="nav-link dropdown-toggle fs-4"

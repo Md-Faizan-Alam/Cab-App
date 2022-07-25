@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Home from './Home';
+import Home from '../Replacements/Home';
+import OldHome from '../Components/Home';
 import Profile from './Profile';
 import Feedback from './Feedback';
 import GiveFeedback from './GiveFeedback';
